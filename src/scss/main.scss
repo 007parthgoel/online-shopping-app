@@ -89,8 +89,7 @@ header {
     .name {
       margin: 0;
       font-size: 1rem;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-        Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+      font-family: $font-family;
     }
     .desc {
       color: $clr-grey-5;
@@ -134,7 +133,7 @@ header {
         .icon {
           margin-right: 0.1rem;
         }
-        &:hover{
+        &:hover {
           background-color: $clr-green-haze-light;
           color: $clr-black;
         }
@@ -143,18 +142,18 @@ header {
   }
 }
 
-.backdrop{
+.backdrop {
   width: 100%;
-    height: 100%;
-    position: fixed;
-    z-index: 10;
-    left: 0;
-    top: 0;
-    background-color: rgba(0,0,0,0.5);
-}
-.sidebar{
   height: 100%;
-  width: 25rem;
+  position: fixed;
+  z-index: 10;
+  left: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.sidebar {
+  height: 100vh;
+  width: 30rem;
   position: fixed;
   z-index: 50;
   top: 0;
@@ -162,8 +161,158 @@ header {
   background-color: $clr-white;
   border: 1px solid $clr-grey-7;
   transition: $transition;
-  transform: translateX(var(--showSidebar,100%));
+  transform: translateX(var(--showSidebar, 100%));
+
+  .sidebar-header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 1rem;
+
+    p {
+      font-size: 2rem;
+      font-weight: 600;
+      // width: rem;
+      text-transform: capitalize;
+      letter-spacing: $spacing;
+      color: $clr-green-haze-light;
+      font-family: $font-family;
+      margin: 0;
+      padding: 0.5rem;
+      border-bottom: 0.2rem solid black;
+      border-radius: $radius-small;
+    }
+    .close-icon {
+      font-size: 2rem;
+    }
+  }
+
+  .sidebar-container {
+    width: 100%;
+    padding: 1rem;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    column-gap: 0.5rem;
+    align-items: center;
+    justify-items: center;
+
+    h4 {
+      font-size: 1rem;
+      font-weight: 700;
+      font-family: $font-family;
+      text-transform: capitalize;
+      letter-spacing: $spacing;
+      color: $clr-green-haze-dark;
+      border-bottom: 2px solid $clr-black;
+    }
+    p {
+      font-size: 1rem;
+      font-weight: 500;
+      font-family: $font-family;
+      text-transform: capitalize;
+      letter-spacing: $spacing;
+      color: $clr-green-haze-dark;
+    }
+
+    .icon-plus,
+    .icon-minus {
+      font-size: 1rem;
+      margin: 0.3rem;
+      border-radius: $radius-small;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: transparent;
+      height: 1.5rem;
+      width: 1.5rem;
+      cursor: pointer;
+      transition: $transition;
+    }
+    .icon-plus {
+      background-color: $clr-green-haze-light;
+      &:hover {
+        background-color: $clr-green-haze-dark;
+        color: $clr-white;
+      }
+    }
+    .icon-minus {
+      background-color: $clr-primary-10;
+      &:hover {
+        background-color: $clr-primary-3;
+        color: $clr-white;
+      }
+    }
+
+    .icon-remove {
+      font-size: 2rem;
+      color: $clr-red-dark;
+      cursor: pointer;
+      border-radius: 50%;
+
+      &:hover {
+        color: $clr-red-light;
+      }
+    }
+
+    .sidebar-quant-control {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+  }
+
+  .sidebar-footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding: 1rem;
+
+    h4 {
+      margin: 0 1rem;
+      font-size: 1rem;
+      font-family: $font-family;
+      font-weight: 700;
+      color: $clr-gold;
+    }
+
+    button {
+      height: 2rem;
+      width: 5rem;
+      font-family: $font-family;
+      font-size: 1rem;
+      text-transform: capitalize;
+      font-weight: 700;      
+      border-radius: $radius-small;
+      margin-right: 0.5rem;
+      border: transparent;
+      box-shadow: $light-shadow;
+      cursor: pointer;
+    }
+
+    .footer-btn-back{
+      background-color: $clr-primary-8;
+      color: $clr-black;
+      transition: $transition;
+      &:hover{
+        background-color: $clr-primary-2;
+        color: $clr-white;
+      }
+    }
+    .footer-btn-proceed{
+      background-color: $clr-gold;
+      color: $clr-black;
+      transition: $transition;
+      &:hover{
+        background-color: $clr-gold-dark;
+        color: $clr-white;
+      }
+    }
+  }
 }
-.open{
-  --showSidebar:0%;
+.open {
+  --showSidebar: 0%;
 }

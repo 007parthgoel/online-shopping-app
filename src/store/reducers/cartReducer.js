@@ -1,33 +1,53 @@
-import * as actionTypes from '../actions/actionTypes';
+import * as actionTypes from "../actions/actionTypes";
 
-const initialState={
-    cart:[],
+const initialState = {
+    // count:0,
+  list: [],
 };
 
+const addItemToCart = (state, action) => {
+  const item = action.payload;
+  let newArray=[...state.list,action.payload];
+  if (item.product_quantity > 0) {
+    return { ...state, list: newArray };
+  }
+  else return state;
+};
 
-const addItem=(state,action)=>{
-    console.log(action);
-    console.log(state);
-    return {...state,cart:[...state.cart,action.payload]};
+const increaseQuantity=(state,action)=>{
+    const newArray=state.list.map(item=>{
+        if(item.product_id===action.payload){
+            return {...item,product_quantity:Math.floor(item.product_quantity+1)}
+        }else{
+            return item;
+        }
+    });
+    return {...state,list:newArray};
 }
-const removeItem=(state,action)=>{
-    console.log(action);
-    console.log(state);
-    return state;       
-}
-const deleteItem=(state,action)=>{
-    console.log(action);
-    console.log(state);
-    return state;
-}
+const decreaseQuantity = (state, action) => {
+    const newArray=state.list.map(item=>{
+        if(item.product_id===action.payload){
+            return {...item,product_quantity:item.product_quantity-1}
+        }else{
+            return item;
+        }
+    });
+    return {...state,list:newArray};
+};
+const deleteItemFromCart = (state, action) => {
+    const newArray=state.list.filter(item=>item.product_id!==action.payload)
+    return {...state,list:newArray};
+};
 
-const reducer=(state=initialState,action)=>{
-    switch(action.type){
-        case actionTypes.ADD_ITEM: return addItem(state,action);
-        case actionTypes.REMOVE_ITEM: return removeItem(state,action);
-        case actionTypes.DELETE_ITEM: return deleteItem(state,action);
-        default: return state;
-    }
-}
+const reducer = (state = initialState, action) => {
+  switch (action.type) {
+    case actionTypes.ADD_ITEM_TO_CART: return addItemToCart(state, action);
+    case actionTypes.INCREASE_QUANTITY: return increaseQuantity(state, action);
+    case actionTypes.DECREASE_QUANTITY: return decreaseQuantity(state, action);
+    case actionTypes.DELETE_ITEM_FROM_CART: return deleteItemFromCart(state, action);
+    default:
+      return state;
+  }
+};
 
 export default reducer;

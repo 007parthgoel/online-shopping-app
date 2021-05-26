@@ -7,6 +7,10 @@ import * as actions from "../store/actions";
 const Card = ({ card, onAddItemsToCart }) => {
   const [itemCount, setItemCount] = useState(0);
 
+  const addItemHandler=(card)=>{
+    onAddItemsToCart({...card,product_quantity:Number(itemCount)});
+    setItemCount(0);
+  }
   return (
     <article className="card-item">
       <img src={card.product_image} alt={card.product_name} />
@@ -22,7 +26,8 @@ const Card = ({ card, onAddItemsToCart }) => {
               setItemCount(e.target.value);
             }}
           />
-          <button onClick={() => onAddItemsToCart(card.product_id)}>
+          <button onClick={() => addItemHandler(card)}>
+          {/* <button onClick={() => onAddItemsToCart(card)}> */}
             <AiOutlineShoppingCart
               className="icon"            
             />
@@ -40,7 +45,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onAddItemsToCart: (id) => dispatch(actions.addItemToCart(id)),
+    onAddItemsToCart: (card) => dispatch(actions.addItemToCart(card)),
   };
 };
 

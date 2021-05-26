@@ -1,1 +1,6 @@
-export {addItemToCart} from "./cartAction";
+export {
+  addItemToCart,
+  increaseQuantity,
+  decreaseQuantity,
+  deleteItemFromCart,
+} from "./cartAction";
