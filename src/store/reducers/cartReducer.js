@@ -1,7 +1,6 @@
 import * as actionTypes from "../actions/actionTypes";
 
 const initialState = {
-    // count:0,
   list: [],
 };
 

@@ -15,10 +15,6 @@ const SideBar = ({
   onDecreaseQuantity,
   onDeleteItemFromCart,
 }) => {
-  // const [itemList,setItemList]=useState(list);
-  // const [itemList,setItemList]=useState(()=>{
-  //     return list;
-  // });
   const [totalPrice, setTotalPrice] = useState(0);
 
   useEffect(() => {
@@ -27,20 +23,6 @@ const SideBar = ({
     }, 0);
     setTotalPrice(price);
   }, [list]);
-
-  const increaseQuantity = (id) => {
-    onIncreaseQuantity(id);
-  };
-
-  const decreaseQuantity = (id) => {
-    onDecreaseQuantity(id);
-  };
-
-  const deleteItem = (id) => {
-    // let data= list.filter(item=>item.product_id!==id);
-    // setItemList(data);
-    onDeleteItemFromCart(id);
-  };
 
   return (
     <>

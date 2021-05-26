@@ -27,7 +27,6 @@ const Card = ({ card, onAddItemsToCart }) => {
             }}
           />
           <button onClick={() => addItemHandler(card)}>
-          {/* <button onClick={() => onAddItemsToCart(card)}> */}
             <AiOutlineShoppingCart
               className="icon"            
             />
